@@ -14,16 +14,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+
 -- -----------------------------------------------------
 -- Schema new_schema1
 -- -----------------------------------------------------
-USE `mydb` ;
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Category` (
+CREATE TABLE IF NOT EXISTS `Category` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -34,7 +34,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `mydb`.`Product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Product` (
+CREATE TABLE IF NOT EXISTS `Product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `barcode`BIGINT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -56,7 +56,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`subtitute`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`subtitute` (
+CREATE TABLE IF NOT EXISTS `subtitute` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `productsub_id` INT NOT NULL,

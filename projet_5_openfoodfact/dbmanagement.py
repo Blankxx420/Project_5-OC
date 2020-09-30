@@ -9,6 +9,7 @@ from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NA
 
 class Dbmanagement:
     """this class control of action made with MYSQL and database"""
+
     def __init__(self):
         """init for database connexion and creating list result"""
         self.cnx = mysql.connector.connect(
@@ -84,23 +85,24 @@ class Dbmanagement:
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (product_id) VALUES (SELECT id from Product WHERE id = %(product_id)s))"
+            "INSERT IGNORE INTO subtitute (product_id) VALUES (SELECT id from Product WHERE id = %(product_id)s)"
         )
         cursor.execute(sql_insert_sub, {'product_id': product})
 
     def return_substitute(self, choice_prod, choice_cat):
         """by selecting product return healthy product based on nutrition grades and category"""
-        cursor_1 = self.cnx.cursor()
-        sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s)"
-        cursor_1.execute(sql_return_grade, {'product_id': choice_prod})
-        grade_aliment = cursor_1.fetchone()
-        cursor_2 = self.cnx.cursor()
-        sql_return_sub = "Select id,name,description,link,nutriscore,store FROM Product WHERE category = %(choice_c)s and nutriscore < %(grade)s"
-        cursor_2.execute(sql_return_sub, {'choice_c': choice_cat}, {'grade': grade_aliment})
-        result = cursor_2.fetchall()
+        cursor = self.cnx.cursor()
+        sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s"
+        cursor.execute(sql_return_grade, {'product_id': choice_prod})
+        grade_aliment = cursor.fetchone()
+        cursor = self.cnx.cursor()
+        sql_return_sub = ("Select id,name,description,link,nutriscore,store FROM Product "
+                          "WHERE category_id = %(choice_c)s and nutriscore < %(grade)s "
+                          "LIMIT 1"
+                          )
+        cursor.execute(sql_return_sub, {'choice_c': choice_cat, 'grade': grade_aliment[0]})
+        result = cursor.fetchall()
         return result
-
-
 
 
 if __name__ == '__main__':

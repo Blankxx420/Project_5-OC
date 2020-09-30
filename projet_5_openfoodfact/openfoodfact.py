@@ -29,10 +29,7 @@ class Openfoodfact:
             self.home()
         if choice_sub == 'oui':
             print("Voici le substitut:")
-            self.data.return_substitute(choice_prod, choice_cat)
-
-
-op = Openfoodfact()
-op.home()
-
-
+            substitute = self.data.return_substitute(choice_prod, choice_cat)
+            for sub in substitute:
+                result = str(sub).strip('()').replace("'", "")
+                print(result)

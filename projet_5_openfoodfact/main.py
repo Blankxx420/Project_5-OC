@@ -1,11 +1,10 @@
-from P5.Dbmanagement import Db_management
-from P5.Api import Api
+from projet_5_openfoodfact.openfoodfact import Openfoodfact
 
-if __name__ == '__main__':
-    ap = Api()
-    ap.clean_product()
-    data = Db_management()
-    data.insert_categories()
-    data.insert_product()
 
+def main():
+    op = Openfoodfact()
+    op.home()
+
+
+main()
 
