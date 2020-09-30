@@ -12,7 +12,7 @@ class Api:
         """Making api call by browsing category in CATEGORIES_LIST"""
         products = []
         for category in CATEGORIES_LIST:
-           try:
+            try:
                 r = requests.get(
                     'https://fr.openfoodfacts.org/cgi/search.pl',
                     params={
@@ -26,13 +26,13 @@ class Api:
                     },
                 )
                 r.raise_for_status()
-            except requests.exceptions.Requests:
+            except requests.exceptions.RequestException:
                 print("connexion error")
                 products.append([])
                 continue
             result = r.json()
             products.append(result['products'])
-        return products
+            return products
 
     def filter_data(self):
         """filtering data contained in product_by_category"""
@@ -56,7 +56,7 @@ class Api:
                 self.product_list.append(attributes)
 
     def clean_product(self):
-    #this function filtering empty keys in self.product_list
+        """filtering empty keys in self.product_list"""
         self.filter_data()
         dict_keys = self.product_list[0].keys()
         for detail in self.product_list:

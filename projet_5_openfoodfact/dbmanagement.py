@@ -5,7 +5,6 @@ from projet_5_openfoodfact.api import Api
 from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
 
 
-
 class Dbmanagement:
 
     def __init__(self):
