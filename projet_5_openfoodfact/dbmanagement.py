@@ -72,24 +72,35 @@ class Dbmanagement:
         cursor = self.cnx.cursor()
         sql_select_product = "SELECT id,name,description,link,nutriscore,store FROM Product WHERE id = %(choice_p)s"
         cursor.execute(sql_select_product, {'choice_p': choice_prod})
-        fecth = cursor.fetchall()
-        for i in fecth:
-            for y in i:
+        fetch = cursor.fetchall()
+        for i in fetch:
+            product = i
+            for y in product:
                 result = str(y).strip("(')")
                 print(result)
+            return product
 
     def insert_substitute(self, product):
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (product_id) VALUES (SELECT id from Product WHERE id = %(product)s))"
+            "INSERT IGNORE INTO subtitute (product_id) VALUES (SELECT id from Product WHERE id = %(product_id)s))"
         )
-        cursor.execute(sql_insert_sub, product)
+        cursor.execute(sql_insert_sub, {'product_id': product})
 
-    def return_substitute(self):
-        cursor = self.cnx.cursor()
-        sql_return_sub = "Select id,name,description,link,nutriscore,store FROM Product"
-        cursor.execute(sql_return_sub)
+    def return_substitute(self, choice_prod, choice_cat):
+        """by selecting product return healthy product based on nutrition grades and category"""
+        cursor_1 = self.cnx.cursor()
+        sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s)"
+        cursor_1.execute(sql_return_grade, {'product_id': choice_prod})
+        grade_aliment = cursor_1.fetchone()
+        cursor_2 = self.cnx.cursor()
+        sql_return_sub = "Select id,name,description,link,nutriscore,store FROM Product WHERE category = %(choice_c)s and nutriscore < %(grade)s"
+        cursor_2.execute(sql_return_sub, {'choice_c': choice_cat}, {'grade': grade_aliment})
+        result = cursor_2.fetchall()
+        return result
+
+
 
 
 if __name__ == '__main__':
