@@ -79,15 +79,15 @@ class Dbmanagement:
             for y in product:
                 result = str(y).strip("(')")
                 print(result)
-            return product
+            return product[0]
 
-    def insert_substitute(self, product):
+    def insert_substitute(self, sub, choice_prod):
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (product_id) VALUES (SELECT id from Product WHERE id = %(product_id)s)"
+            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES %(sub_id)s (SELECT id from Product WHERE id = %(product_id)s)"
         )
-        cursor.execute(sql_insert_sub, {'product_id': product})
+        cursor.execute(sql_insert_sub, {'sub_id': sub, 'product_id': choice_prod})
 
     def return_substitute(self, choice_prod, choice_cat):
         """by selecting product return healthy product based on nutrition grades and category"""
@@ -95,9 +95,9 @@ class Dbmanagement:
         sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s"
         cursor.execute(sql_return_grade, {'product_id': choice_prod})
         grade_aliment = cursor.fetchone()
-        cursor = self.cnx.cursor()
         sql_return_sub = ("Select id,name,description,link,nutriscore,store FROM Product "
                           "WHERE category_id = %(choice_c)s and nutriscore < %(grade)s "
+                          "ORDER BY RAND() "
                           "LIMIT 1"
                           )
         cursor.execute(sql_return_sub, {'choice_c': choice_cat, 'grade': grade_aliment[0]})
