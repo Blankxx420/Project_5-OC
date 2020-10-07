@@ -1,5 +1,5 @@
 """this file contains all interface in command lines"""
-from projet_5_openfoodfact.dbmanagement import Dbmanagement
+from openfoodfacts.dbmanagement import Dbmanagement
 
 
 class Openfoodfact:

@@ -3,8 +3,8 @@ this file is all interaction with database using my sql.connector
 """
 import mysql.connector
 
-from projet_5_openfoodfact.api import Api
-from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
+from openfoodfacts.api import Api
+from openfoodfacts.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
 
 
 class Dbmanagement:
@@ -21,7 +21,7 @@ class Dbmanagement:
         self.result = []
 
     def init_database(self):
-        with open("Database_script.sql") as sqlfile:
+        with open("openfoodfacts/Database_script.sql") as sqlfile:
             content = sqlfile.read()
         sql_requests = [sql for sql in content.split(';') if sql.strip()]
         cursor = self.cnx.cursor()

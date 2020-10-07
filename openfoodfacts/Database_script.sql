@@ -23,12 +23,14 @@ CREATE TABLE IF NOT EXISTS `Product` (
     ON UPDATE NO ACTION )
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `substitute`(
-  `product_id` INT,
-  `productsub_id` INT,
-  PRIMARY KEY (`product_id, productsub_id),
+CREATE TABLE IF NOT EXISTS substitute (
+  product_id INT NOT NULL,
+  productsub_id INT NOT NULL,
+  PRIMARY KEY (product_id, productsub_id),
   FOREIGN KEY (product_id)
     REFERENCES Product(id)
-  FOREIGN KEY (productsub_id`)
-    REFERENCES Product (id)
-);
+  FOREIGN KEY (productsub_id)
+    REFERENCES Product(id)
+)
+ENGINE = InnoDB;
+
