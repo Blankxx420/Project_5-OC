@@ -1,14 +1,14 @@
 """this files is use to make api calls and filtering data"""
 import requests
 
-from projet_5_openfoodfact.setup import CATEGORIES_LIST
+from openfoodfacts.setup import CATEGORIES_LIST
 
 
 class Api:
     def __init__(self):
         self.product_list = []
 
-    def get_product(self):
+    def get_product():
         """Making api call by browsing category in CATEGORIES_LIST"""
         products = []
         for category in CATEGORIES_LIST:
