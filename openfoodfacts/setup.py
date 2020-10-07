@@ -2,11 +2,10 @@ DB_USER = 'root'
 DB_PASS = 'Enurox123'
 DB_NAME = 'mydb'
 CATEGORIES_LIST = [
-    'Pizza',
-    'Glaces',
-    'Fromages',
+    'Boissons',
+    'Snacks',
+    'Epicerie',
     'Viandes',
     'Plats préparés',
-    'Boissons',
+    'Conserves',
 ]
-

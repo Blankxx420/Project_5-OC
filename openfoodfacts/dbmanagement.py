@@ -2,9 +2,17 @@
 this file is all interaction with database using my sql.connector
 """
 import mysql.connector
-from pprint import pprint
+
+<<<<<<< HEAD:openfoodfacts/dbmanagement.py
+from openfoodfacts.api import Api
+from openfoodfacts.setup import CATEGORIES_LIST
+from openfoodfacts.setup import DB_NAME
+from openfoodfacts.setup import DB_PASS
+from openfoodfacts.setup import DB_USER
+=======
 from projet_5_openfoodfact.api import Api
 from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
+>>>>>>> parent of 1925e3a... connexion to make install easier:projet_5_openfoodfact/dbmanagement.py
 
 
 class Dbmanagement:
@@ -20,16 +28,17 @@ class Dbmanagement:
         )
         self.result = []
 
+<<<<<<< HEAD:openfoodfacts/dbmanagement.py
     def init_database(self):
-        db_script = Database_script.txt
-        with open(db_script) as sqlfile:
+        with open("Database_script.sql") as sqlfile:
             content = sqlfile.read()
-            sql_requests = [sql for sql in content.split(';') if sql.strip()]
-            cursor = self.cnx.cursor()
-            for sql_request in sql_requests:
-                print(sql_request)
-                cursor.execute(sql_request)
+        sql_requests = [sql for sql in content.split(';') if sql.strip()]
+        cursor = self.cnx.cursor()
+        for sql_request in sql_requests:
+            cursor.execute(sql_request)
 
+=======
+>>>>>>> parent of 1925e3a... connexion to make install easier:projet_5_openfoodfact/dbmanagement.py
     def insert_categories(self):
         """inserting categories in database by browse CATEGORIES_LIST"""
         cursor = self.cnx.cursor()
@@ -95,7 +104,7 @@ class Dbmanagement:
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES (%(sub_id)s, (SELECT id from Product WHERE id = %(product_id)s))"
+            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES %(sub_id)s (SELECT id from Product WHERE id = %(product_id)s)"
         )
         cursor.execute(sql_insert_sub, {'sub_id': sub, 'product_id': choice_prod})
 
@@ -117,6 +126,5 @@ class Dbmanagement:
 
 if __name__ == '__main__':
     data = Dbmanagement()
-    data.init_database()
     data.insert_categories()
     data.insert_product()
