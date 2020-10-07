@@ -24,7 +24,7 @@ class Dbmanagement:
         self.result = []
 
     def init_database(self):
-        with open("openfoodfacts/Database_script.sql") as sqlfile:
+        with open("Database_script.sql") as sqlfile:
             content = sqlfile.read()
         sql_requests = [sql for sql in content.split(';') if sql.strip()]
         cursor = self.cnx.cursor()
