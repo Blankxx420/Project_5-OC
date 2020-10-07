@@ -4,7 +4,10 @@ this file is all interaction with database using my sql.connector
 import mysql.connector
 
 from openfoodfacts.api import Api
-from openfoodfacts.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
+from openfoodfacts.setup import CATEGORIES_LIST
+from openfoodfacts.setup import DB_NAME
+from openfoodfacts.setup import DB_PASS
+from openfoodfacts.setup import DB_USER
 
 
 class Dbmanagement:

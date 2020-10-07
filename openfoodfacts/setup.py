@@ -9,4 +9,3 @@ CATEGORIES_LIST = [
     'Plats préparés',
     'Boissons',
 ]
-
