@@ -4,15 +4,21 @@ this file is all interaction with database using my sql.connector
 import mysql.connector
 
 <<<<<<< HEAD:openfoodfacts/dbmanagement.py
-from openfoodfacts.api import Api
-from openfoodfacts.setup import CATEGORIES_LIST
-from openfoodfacts.setup import DB_NAME
-from openfoodfacts.setup import DB_PASS
-from openfoodfacts.setup import DB_USER
+<<<<<<< HEAD:openfoodfacts/dbmanagement.py
+=======
+>>>>>>> 826ed8048ad2d7f1e04b0c1f63fabe6877048f8a:projet_5_openfoodfact/dbmanagement.py
+from projet_5_openfoodfact.api import Api
+from projet_5_openfoodfact.setup import CATEGORIES_LIST
+from projet_5_openfoodfact.setup import DB_NAME
+from projet_5_openfoodfact.setup import DB_PASS
+from projet_5_openfoodfact.setup import DB_USER
+<<<<<<< HEAD:openfoodfacts/dbmanagement.py
 =======
 from projet_5_openfoodfact.api import Api
 from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
 >>>>>>> parent of 1925e3a... connexion to make install easier:projet_5_openfoodfact/dbmanagement.py
+=======
+>>>>>>> 826ed8048ad2d7f1e04b0c1f63fabe6877048f8a:projet_5_openfoodfact/dbmanagement.py
 
 
 class Dbmanagement:

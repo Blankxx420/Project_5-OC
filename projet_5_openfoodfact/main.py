@@ -1,4 +1,4 @@
-from openfoodfacts.openfoodfact import Openfoodfact
+from projet_5_openfoodfact.openfoodfact import Openfoodfact
 
 
 def main():
