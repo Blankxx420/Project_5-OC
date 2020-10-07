@@ -3,22 +3,8 @@ this file is all interaction with database using my sql.connector
 """
 import mysql.connector
 
-<<<<<<< HEAD:openfoodfacts/dbmanagement.py
-<<<<<<< HEAD:openfoodfacts/dbmanagement.py
-=======
->>>>>>> 826ed8048ad2d7f1e04b0c1f63fabe6877048f8a:projet_5_openfoodfact/dbmanagement.py
-from projet_5_openfoodfact.api import Api
-from projet_5_openfoodfact.setup import CATEGORIES_LIST
-from projet_5_openfoodfact.setup import DB_NAME
-from projet_5_openfoodfact.setup import DB_PASS
-from projet_5_openfoodfact.setup import DB_USER
-<<<<<<< HEAD:openfoodfacts/dbmanagement.py
-=======
 from projet_5_openfoodfact.api import Api
 from projet_5_openfoodfact.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
->>>>>>> parent of 1925e3a... connexion to make install easier:projet_5_openfoodfact/dbmanagement.py
-=======
->>>>>>> 826ed8048ad2d7f1e04b0c1f63fabe6877048f8a:projet_5_openfoodfact/dbmanagement.py
 
 
 class Dbmanagement:
@@ -34,7 +20,7 @@ class Dbmanagement:
         )
         self.result = []
 
-<<<<<<< HEAD:openfoodfacts/dbmanagement.py
+
     def init_database(self):
         with open("Database_script.sql") as sqlfile:
             content = sqlfile.read()
@@ -43,8 +29,7 @@ class Dbmanagement:
         for sql_request in sql_requests:
             cursor.execute(sql_request)
 
-=======
->>>>>>> parent of 1925e3a... connexion to make install easier:projet_5_openfoodfact/dbmanagement.py
+
     def insert_categories(self):
         """inserting categories in database by browse CATEGORIES_LIST"""
         cursor = self.cnx.cursor()
