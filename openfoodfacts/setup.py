@@ -3,8 +3,8 @@ DB_PASS = 'Enurox123'
 DB_NAME = 'mydb'
 CATEGORIES_LIST = [
     'Boissons',
-    'Snacks',
-    'Epicerie',
+    'Glaçes',
+    'Pizza',
     'Viandes',
     'Plats préparés',
     'Conserves',

@@ -8,7 +8,7 @@ class Drop:
 
     def drop_all(self):
         cursor = self.cnx.cursor()
-        cursor.execute("DROP TABLE subtitute")
+        cursor.execute("DROP TABLE substitute")
         cursor.execute("DROP TABLE Product")
         cursor.execute("DROP TABLE Category")
         self.cnx.commit()

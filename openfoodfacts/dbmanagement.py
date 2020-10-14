@@ -71,10 +71,10 @@ class Dbmanagement:
         sql_return_prod = "SELECT id,name,description,link,nutriscore,store FROM Product WHERE category_id = %(choice)s ORDER BY RAND() LIMIT 10"
         cursor.execute(sql_return_prod, {'choice': choice_cat})
         fetch = cursor.fetchall()
-        for i in fetch:
-            self.result.append(i)
-            rows = str(i).strip('()').replace("'", "")
-            print(rows)
+        for product in fetch:
+            self.result.append(product)
+            rows = str(product).strip('()').replace("'", "")
+            print(product)
 
     def select_product(self, choice_prod):
         """selecting product by id for selection of 1 product by user"""
@@ -93,7 +93,7 @@ class Dbmanagement:
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES %(sub_id)s (SELECT id from Product WHERE id = %(product_id)s)"
+            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES (%(sub_id)s, %(product_id)s))"
         )
         cursor.execute(sql_insert_sub, {'sub_id': sub, 'product_id': choice_prod})
 
@@ -115,5 +115,6 @@ class Dbmanagement:
 
 if __name__ == '__main__':
     data = Dbmanagement()
+    data.init_database()
     data.insert_categories()
     data.insert_product()
