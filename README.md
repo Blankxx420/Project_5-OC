@@ -33,3 +33,6 @@ python -m openfoodfacts.main
 ```
 6. **ENJOY!** :smiley:
 
+## :round_pushpin: Diagramme
+![Image of Openfoodfact](Images/openfoodfact_diagram.png)
+
