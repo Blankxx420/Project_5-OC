@@ -35,5 +35,6 @@ python -m openfoodfacts.main
 ## :round_pushpin: Diagramme 
 ![Image of Openfoodfact](Images/openfoodfact_diagram.png)
 ---
-## :round_pushpin: Trello![Image of Openfoodfact](Images/trello.png)
+## :round_pushpin: [Trello](https://trello.com/b/uBhCgrdO/projet-5)
+![Image of Openfoodfact](Images/trello.png)
 
