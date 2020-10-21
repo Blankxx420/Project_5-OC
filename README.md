@@ -15,7 +15,6 @@ L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur aliment
 - **Sélectionnez l'aliment**. *[Plusieurs propositions associées à un chiffre. L'utilisateur entre le chiffre correspondant à l'aliment choisi et appuie sur entrée]*
 - **Le programme propose un substitut, sa description, un magasin ou l'acheter (le cas échéant) et un lien vers la page d'Open Food Facts concernant cet aliment.**
 - **L'utilisateur a alors la possibilité d'enregistrer le résultat dans la base de données.**
----
 ## :wrench: Installation 
 1. **Installer [MYSQL](https://dev.mysql.com/downloads/installer/)**
 2. **Créer votre base de données MYSQL**
