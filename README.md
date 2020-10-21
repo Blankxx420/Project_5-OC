@@ -4,7 +4,7 @@ La startup Pur Beurre travaille connait bien les habitudes alimentaires françai
 
 L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur alimentation mais ne savaient pas bien par quoi commencer. Remplacer le Nutella par une pâte aux noisettes, oui, mais laquelle ? Et dans quel magasin l'acheter ? Leur idée est donc de créer un programme qui interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain à l'aliment qui lui fait envie.
 
-## Cahiers des charges
+## :book: Cahiers des charges
 **L'utilisateur est sur le terminal. Ce dernier lui affiche les choix suivants :**
 
 1. **Quel aliment souhaitez-vous remplacer ?**
@@ -16,7 +16,7 @@ L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur aliment
 - **Le programme propose un substitut, sa description, un magasin ou l'acheter (le cas échéant) et un lien vers la page d'Open Food Facts concernant cet aliment.**
 - **L'utilisateur a alors la possibilité d'enregistrer le résultat dans la base de données.**
 ---
-## Installation
+## :wrench: Installation 
 1. **Créer votre base de données**
 2. **Remplacer les identifiant de la base de données pour la connexion dans constant.py**
 ```
