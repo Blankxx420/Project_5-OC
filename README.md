@@ -17,18 +17,19 @@ L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur aliment
 - **L'utilisateur a alors la possibilité d'enregistrer le résultat dans la base de données.**
 ---
 ## :wrench: Installation 
-1. **Créer votre base de données**
-2. **Remplacer les identifiant de la base de données pour la connexion dans constant.py**
+1. **Installer [MYSQL](https://dev.mysql.com/downloads/installer/)**
+2. **Créer votre base de données MYSQL**
+3. **Remplacer les identifiant de la base de données pour la connexion dans constant.py**
 ```
 DB_NAME, DB_USER, DB_PASS
 ```
-3. **Lançer setup.py**
+4. **Lançer setup.py**
 ```
 python -m openfoodfacts.setup
 ```
-4. **Lançer main.py**
+5. **Lançer main.py**
 ```
 python -m openfoodfacts.main
 ```
-
+6. **ENJOY!** :smiley:
 
