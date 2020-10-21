@@ -17,6 +17,18 @@ L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur aliment
 - **L'utilisateur a alors la possibilité d'enregistrer le résultat dans la base de données.**
 ---
 ## Installation
-
+1. **Créer votre base de données**
+2. **Remplacer les identifiant de la base de données pour la connexion dans constant.py**
+```
+DB_NAME, DB_USER, DB_PASS
+```
+3. **Lançer setup.py**
+```
+python -m openfoodfacts.setup
+```
+4. **Lançer main.py**
+```
+python -m openfoodfacts.main
+```
 
 
