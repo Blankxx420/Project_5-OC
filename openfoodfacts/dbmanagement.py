@@ -21,7 +21,7 @@ class Dbmanagement:
         self.result = []
 
     def init_database(self):
-        with open("Database_script.sql") as sqlfile:
+        with open("openfoodfacts/Database_script.sql") as sqlfile:
             content = sqlfile.read()
         sql_requests = [sql for sql in content.split(';') if sql.strip()]
         cursor = self.cnx.cursor()
@@ -74,7 +74,7 @@ class Dbmanagement:
         for product in fetch:
             self.result.append(product)
             rows = str(product).strip('()').replace("'", "")
-            print(product)
+            print(rows)
 
     def select_product(self, choice_prod):
         """selecting product by id for selection of 1 product by user"""

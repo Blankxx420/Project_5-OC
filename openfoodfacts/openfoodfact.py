@@ -39,7 +39,7 @@ class Openfoodfact:
         """Answer the use if he want keep product if it's yes it's save id of both product in database"""
         substitut = self.choice_sub(choice_prod, choice_cat)
         keep_sub = str(input("Souhaitez vous le sauvegarder dans la base de donnée ? (oui/non)"))
-        sub = substitut[0]
+        sub = substitut
         if keep_sub == 'oui':
             self.data.insert_substitute(sub, choice_prod)
             print("le produit est bien sauvegarder !")

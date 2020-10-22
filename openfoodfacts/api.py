@@ -20,6 +20,8 @@ class Api:
                         'json': 1,
                         'countries': 'France',
                         'tag_0': category,
+                        'tagtype_0': "categories",
+                        'tag_contains_0': 'contains',
                         'sort_by': 'unique_scans_n',
                         'page_size': 100,
                         'page': 1,
@@ -32,7 +34,7 @@ class Api:
                 continue
             result = r.json()
             products.append(result['products'])
-            return products
+        return products
 
     def filter_data(self):
         """filtering data contained in product_by_category"""
