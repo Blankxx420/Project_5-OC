@@ -1,7 +1,7 @@
 """this files is use to make api calls and filtering data"""
 import requests
 
-from openfoodfacts.setup import CATEGORIES_LIST
+from openfoodfacts.constant import CATEGORIES_LIST
 
 
 class Api:

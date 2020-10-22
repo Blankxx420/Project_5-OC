@@ -4,7 +4,7 @@ this file is all interaction with database using my sql.connector
 import mysql.connector
 
 from openfoodfacts.api import Api
-from openfoodfacts.setup import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
+from openfoodfacts.constant import CATEGORIES_LIST, DB_USER, DB_PASS, DB_NAME
 
 
 class Dbmanagement:
@@ -89,13 +89,13 @@ class Dbmanagement:
                 print(result)
             return product[0]
 
-    def insert_substitute(self, sub, choice_prod):
+    def insert_substitute(self, sub_id, choice_prod):
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO subtitute (productsub_id, product_id) VALUES (%(sub_id)s, %(product_id)s))"
+            "INSERT IGNORE INTO substitute (productsub_id, product_id) VALUES (%(substitute_id)s, %(product_id)s)"
         )
-        cursor.execute(sql_insert_sub, {'sub_id': sub, 'product_id': choice_prod})
+        cursor.execute(sql_insert_sub, {'substitute_id': sub_id, 'product_id': choice_prod})
 
     def return_substitute(self, choice_prod, choice_cat):
         """by selecting product return healthy product based on nutrition grades and category"""
@@ -103,8 +103,8 @@ class Dbmanagement:
         sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s"
         cursor.execute(sql_return_grade, {'product_id': choice_prod})
         grade_aliment = cursor.fetchone()
-        sql_return_sub = ("Select id,name,description,link,nutriscore,store FROM Product "
-                          "WHERE category_id = %(choice_c)s and nutriscore < %(grade)s "
+        sql_return_sub = ("SELECT id,name,description,link,nutriscore,store FROM Product "
+                          "WHERE category_id = %(choice_c)s AND nutriscore < %(grade)s "
                           "ORDER BY RAND() "
                           "LIMIT 1"
                           )
@@ -112,9 +112,12 @@ class Dbmanagement:
         result = cursor.fetchall()
         return result
 
-
-if __name__ == '__main__':
-    data = Dbmanagement()
-    data.init_database()
-    data.insert_categories()
-    data.insert_product()
+    def show_favorite(self):
+        """return product with assiocated substitute"""
+        cursor = self.cnx.cursor()
+        sql_show_fav = ("SElECT id,name,description,link,nutriscore,3store FROM Product "
+                        "JOIN substitute on substitute.product_id = Product.id "
+                        "JOIN substitute as sub on substitute.productsub_id = Product.id")
+        cursor.execute(sql_show_fav)
+        fav = cursor.fetchall()
+        print(fav)
