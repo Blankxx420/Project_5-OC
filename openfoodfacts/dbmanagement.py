@@ -93,9 +93,11 @@ class Dbmanagement:
         """inserting id of product into table substitute"""
         cursor = self.cnx.cursor()
         sql_insert_sub = (
-            "INSERT IGNORE INTO substitute (productsub_id, product_id) VALUES (%(substitute_id)s, %(product_id)s)"
+            "INSERT IGNORE INTO substitute (productsub_id, product_id) "
+            "VALUES (%(substitute_id)s, %(product_id)s)"
         )
         cursor.execute(sql_insert_sub, {'substitute_id': sub_id, 'product_id': choice_prod})
+        self.cnx.commit()
 
     def return_substitute(self, choice_prod, choice_cat):
         """by selecting product return healthy product based on nutrition grades and category"""
@@ -115,9 +117,10 @@ class Dbmanagement:
     def show_favorite(self):
         """return product with assiocated substitute"""
         cursor = self.cnx.cursor()
-        sql_show_fav = ("SElECT id,name,description,link,nutriscore,3store FROM Product "
-                        "JOIN substitute on substitute.product_id = Product.id "
-                        "JOIN substitute as sub on substitute.productsub_id = Product.id")
+        sql_show_fav = ("SElECT Product.id,Product.name,Product.description,Product.link,Product.nutriscore,Product.store,"
+                        "sub.id,sub.name,sub.description,sub.link,sub.nutriscore,sub.store FROM substitute "
+                        "JOIN Product on substitute.product_id = Product.id "
+                        "JOIN Product as sub on substitute.productsub_id = sub.id")
         cursor.execute(sql_show_fav)
         fav = cursor.fetchall()
         print(fav)
