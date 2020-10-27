@@ -33,7 +33,7 @@ python -m openfoodfacts.main
 6. **ENJOY!** :smiley:
 
 ## :round_pushpin: Diagramme 
-![Image of Openfoodfact](Images/openfoodfact_diagram.png)
+![Image of Openfoodfact](Images/database_diagram.png)
 ---
 ## :round_pushpin: [Trello](https://trello.com/b/uBhCgrdO/projet-5)
 ![Image of Openfoodfact](Images/trello.png)
