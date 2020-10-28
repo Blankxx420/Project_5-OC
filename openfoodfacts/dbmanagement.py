@@ -123,4 +123,7 @@ class Dbmanagement:
                         "JOIN Product as sub on substitute.productsub_id = sub.id")
         cursor.execute(sql_show_fav)
         fav = cursor.fetchall()
-        print(fav)
+        for products in fav:
+            products = str(products[:6]).strip('()').replace("'", "")
+            substitute = str(products[6:]).strip('()').replace("'", "")
+            print(f" les produits {products} peuvent être substitutés par les produits: {substitute}")
