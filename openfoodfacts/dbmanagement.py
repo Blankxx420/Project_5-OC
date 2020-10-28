@@ -160,3 +160,14 @@ class Dbmanagement:
         cursor.execute(sql_d_all_fav)
         self.cnx.commit()
         print('tout les favoris on bien étés effacés')
+
+    def delete_favorite(self, fav_prod, fav_sub):
+        cursor = self.cnx.cursor()
+        sql_del_fav = (
+            "DELETE FROM substitute WHERE product_id = %(choice_fav_p)s "
+            "AND productsub_id = %(choice_fav_s)s"
+        )
+        cursor.execute(sql_del_fav, {'choice_fav_p': fav_prod,
+                                     'choice_fav_s': fav_sub}
+                       )
+        self.cnx.commit()
