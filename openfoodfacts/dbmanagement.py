@@ -145,11 +145,10 @@ class Dbmanagement:
                         )
         cursor.execute(sql_show_fav)
         fav = cursor.fetchall()
-        for products in fav:
-            products = str(products[:6]).strip('()').replace("'", "")
-            substitute = str(products[6:]).strip('()').replace("'", "")
-            print(f" les produits {products} peuvent être substitutés "
-                  f"par les produits: {substitute}")
+        products = str(fav[:6]).strip('()').replace("'", "")
+        substitute = str(fav[6:]).strip('()').replace("'", "")
+        print(f" les produits '{products}' peuvent être substitutés")
+        print(f"par les produits: '{substitute}'")
 
     def delete_all_fav(self):
         """deleting all favorites in table substitute"""
@@ -165,7 +164,7 @@ class Dbmanagement:
         cursor = self.cnx.cursor()
         sql_del_fav = (
             "DELETE FROM substitute WHERE product_id = %(choice_fav_p)s "
-            "AND productsub_id = %(choice_fav_s)s"
+            " AND productsub_id = %(choice_fav_s)s"
         )
         cursor.execute(sql_del_fav, {'choice_fav_p': fav_prod,
                                      'choice_fav_s': fav_sub}
