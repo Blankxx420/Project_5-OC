@@ -171,3 +171,4 @@ class Dbmanagement:
                                      'choice_fav_s': fav_sub}
                        )
         self.cnx.commit()
+        print("le favoris à bien été effacé")
