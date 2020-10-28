@@ -31,7 +31,9 @@ class Dbmanagement:
     def insert_categories(self):
         """inserting categories in database by browse CATEGORIES_LIST"""
         cursor = self.cnx.cursor()
-        sql_insert_cat = "INSERT IGNORE INTO Category (name) VALUES (%(category)s)"
+        sql_insert_cat = ("INSERT IGNORE INTO Category (name) "
+                          "VALUES (%(category)s)"
+                          )
         for category in CATEGORIES_LIST:
             category_to_add = {'category': category}
             cursor.execute(sql_insert_cat, category_to_add)
@@ -54,9 +56,12 @@ class Dbmanagement:
         """inserting product in database, using product_list in Api"""
         cursor = self.cnx.cursor()
         sql_insert_prod = (
-            "INSERT IGNORE INTO Product (barcode, name, description, store, link, nutriscore, category_id)"
-            "VALUES(%(code)s, %(product_name)s, %(details)s, %(stores)s, %(link)s, %(nutriscore)s,"
-            " (SELECT id from Category WHERE name = %(categories)s))"
+            "INSERT IGNORE INTO Product "
+            "(barcode,name,description,store,link,nutriscore, "
+            "category_id) "
+            "VALUES (%(code)s,%(product_name)s,%(details)s,%(stores)s, "
+            "%(link)s, %(nutriscore)s,"
+            "(SELECT id FROM Category WHERE name = %(categories)s))"
         )
         prod = Api()
         prod.clean_product()
@@ -68,7 +73,10 @@ class Dbmanagement:
     def return_product(self, choice_cat):
         """return 10 product randomly contain in category selected"""
         cursor = self.cnx.cursor()
-        sql_return_prod = "SELECT id,name,description,link,nutriscore,store FROM Product WHERE category_id = %(choice)s ORDER BY RAND() LIMIT 10"
+        sql_return_prod = ("SELECT id,name,description,link,nutriscore,store "
+                           "FROM Product "
+                           "WHERE category_id = %(choice)s "
+                           "ORDER BY RAND() LIMIT 10")
         cursor.execute(sql_return_prod, {'choice': choice_cat})
         fetch = cursor.fetchall()
         for product in fetch:
@@ -79,7 +87,10 @@ class Dbmanagement:
     def select_product(self, choice_prod):
         """selecting product by id for selection of 1 product by user"""
         cursor = self.cnx.cursor()
-        sql_select_product = "SELECT id,name,description,link,nutriscore,store FROM Product WHERE id = %(choice_p)s"
+        sql_select_product = ("SELECT id,name,description,link,nutriscore "
+                              ",store "
+                              "FROM Product WHERE id = %(choice_p)s"
+                              )
         cursor.execute(sql_select_product, {'choice_p': choice_prod})
         fetch = cursor.fetchall()
         for i in fetch:
@@ -96,34 +107,45 @@ class Dbmanagement:
             "INSERT IGNORE INTO substitute (productsub_id, product_id) "
             "VALUES (%(substitute_id)s, %(product_id)s)"
         )
-        cursor.execute(sql_insert_sub, {'substitute_id': sub_id, 'product_id': choice_prod})
+        cursor.execute(sql_insert_sub, {'substitute_id': sub_id,
+                                        'product_id': choice_prod})
         self.cnx.commit()
 
     def return_substitute(self, choice_prod, choice_cat):
-        """by selecting product return healthy product based on nutrition grades and category"""
+        """by selecting product return healthy product based
+         on nutrition grades and category"""
         cursor = self.cnx.cursor()
-        sql_return_grade = "Select nutriscore FROM Product where id = %(product_id)s"
+        sql_return_grade = ("SELECT nutriscore FROM Product"
+                            "WHERE id = %(product_id)s"
+                            )
         cursor.execute(sql_return_grade, {'product_id': choice_prod})
         grade_aliment = cursor.fetchone()
-        sql_return_sub = ("SELECT id,name,description,link,nutriscore,store FROM Product "
-                          "WHERE category_id = %(choice_c)s AND nutriscore < %(grade)s "
+        sql_return_sub = ("SELECT id,name,description,link,nutriscore,store "
+                          "FROM Product "
+                          "WHERE category_id = %(choice_c)s "
+                          "AND nutriscore < %(grade)s "
                           "ORDER BY RAND() "
                           "LIMIT 1"
                           )
-        cursor.execute(sql_return_sub, {'choice_c': choice_cat, 'grade': grade_aliment[0]})
+        cursor.execute(sql_return_sub, {'choice_c': choice_cat,
+                                        'grade': grade_aliment[0]})
         result = cursor.fetchall()
         return result
 
     def show_favorite(self):
         """return product with assiocated substitute"""
         cursor = self.cnx.cursor()
-        sql_show_fav = ("SElECT Product.id,Product.name,Product.description,Product.link,Product.nutriscore,Product.store,"
-                        "sub.id,sub.name,sub.description,sub.link,sub.nutriscore,sub.store FROM substitute "
+        sql_show_fav = ("SElECT Product.id,Product.name,Product.description,"
+                        "Product.link,Product.nutriscore,Product.store,"
+                        "sub.id,sub.name,sub.description,sub.link,"
+                        "sub.nutriscore,sub.store FROM substitute "
                         "JOIN Product on substitute.product_id = Product.id "
-                        "JOIN Product as sub on substitute.productsub_id = sub.id")
+                        "JOIN Product as sub "
+                        "on substitute.productsub_id = sub.id")
         cursor.execute(sql_show_fav)
         fav = cursor.fetchall()
         for products in fav:
             products = str(products[:6]).strip('()').replace("'", "")
             substitute = str(products[6:]).strip('()').replace("'", "")
-            print(f" les produits {products} peuvent être substitutés par les produits: {substitute}")
+            print(f" les produits {products} peuvent être substitutés "
+                  f"par les produits: {substitute}")

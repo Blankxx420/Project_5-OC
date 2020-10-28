@@ -8,7 +8,8 @@ class Api:
     def __init__(self):
         self.product_list = []
 
-    def get_product(self):
+    @staticmethod
+    def get_product():
         """Making api call by browsing category in CATEGORIES_LIST"""
         products = []
         for category in CATEGORIES_LIST:
