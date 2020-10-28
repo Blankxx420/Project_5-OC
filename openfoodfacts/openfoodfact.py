@@ -55,6 +55,7 @@ class Openfoodfact:
         menu_fav = input('Souhaitez vous accéder à vos favoris (oui, non)')
         if menu_fav == 'oui':
             self.data.show_favorite()
+            self.delete_favorites()
         if menu_fav == 'non':
             self.home()
 
@@ -67,3 +68,12 @@ class Openfoodfact:
             self.home()
         if menu_choice == 'favoris':
             self.show_fav()
+
+    def delete_favorites(self):
+        del_favorites = input("voullez vous supprimer tout les favoris"
+                              " (oui/non)"
+                              )
+        if del_favorites == "oui":
+            self.data.delete_all_fav()
+        if del_favorites == "non":
+            self.home_menu()

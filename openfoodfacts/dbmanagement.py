@@ -115,7 +115,7 @@ class Dbmanagement:
         """by selecting product return healthy product based
          on nutrition grades and category"""
         cursor = self.cnx.cursor()
-        sql_return_grade = ("SELECT nutriscore FROM Product"
+        sql_return_grade = ("SELECT nutriscore FROM Product "
                             "WHERE id = %(product_id)s"
                             )
         cursor.execute(sql_return_grade, {'product_id': choice_prod})
@@ -133,15 +133,16 @@ class Dbmanagement:
         return result
 
     def show_favorite(self):
-        """return product with assiocated substitute"""
+        """return product with associated substitute"""
         cursor = self.cnx.cursor()
-        sql_show_fav = ("SElECT Product.id,Product.name,Product.description,"
-                        "Product.link,Product.nutriscore,Product.store,"
-                        "sub.id,sub.name,sub.description,sub.link,"
+        sql_show_fav = ("SElECT Product.id,Product.name,Product.description, "
+                        "Product.link,Product.nutriscore,Product.store, "
+                        "sub.id,sub.name,sub.description,sub.link, "
                         "sub.nutriscore,sub.store FROM substitute "
                         "JOIN Product on substitute.product_id = Product.id "
                         "JOIN Product as sub "
-                        "on substitute.productsub_id = sub.id")
+                        "on substitute.productsub_id = sub.id"
+                        )
         cursor.execute(sql_show_fav)
         fav = cursor.fetchall()
         for products in fav:
@@ -149,3 +150,13 @@ class Dbmanagement:
             substitute = str(products[6:]).strip('()').replace("'", "")
             print(f" les produits {products} peuvent être substitutés "
                   f"par les produits: {substitute}")
+
+    def delete_all_fav(self):
+        """deleting all favorites in table substitute"""
+        cursor = self.cnx.cursor()
+        sql_d_all_fav = (
+            "DELETE FROM substitute"
+        )
+        cursor.execute(sql_d_all_fav)
+        self.cnx.commit()
+        print('tout les favoris on bien étés effacés')
