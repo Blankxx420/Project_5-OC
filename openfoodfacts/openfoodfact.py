@@ -11,9 +11,6 @@ class Openfoodfact:
 
     def home(self):
         """Basically menu function """
-        print('******BIENVENUE******')
-        print('********SUR**********')
-        print('****OPEN FOOD FACT****')
         self.data.return_categories()
         choice_cat = int(input("Veuillez entrer le numéro de la catégorie souhaitée."))
         print(choice_cat)
@@ -55,3 +52,13 @@ class Openfoodfact:
             self.data.show_favorite()
         if menu_fav == 'non':
             self.home()
+
+    def home_menu(self):
+        print('******BIENVENUE******')
+        print('********SUR**********')
+        print('****OPEN FOOD FACT****')
+        menu_choice = input('Sélectionner le menu souhaité (menu, favoris)')
+        if menu_choice == 'menu':
+            self.home()
+        if menu_choice == 'favoris':
+            self.show_fav()

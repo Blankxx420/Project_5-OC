@@ -3,7 +3,7 @@ from openfoodfacts.openfoodfact import Openfoodfact
 
 def main():
     op = Openfoodfact()
-    op.home()
+    op.home_menu()
 
 
 main()
