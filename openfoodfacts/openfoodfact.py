@@ -30,7 +30,7 @@ class Openfoodfact:
         if choice_sub == 2:
             self.home()
         if choice_sub == 1:
-            print("Voici le substitut:")
+            print("Voici le substitut:\n")
             substitutes = self.data.return_substitute(choice_prod, choice_cat)
             for sub in substitutes:
                 sub_id = sub[0]

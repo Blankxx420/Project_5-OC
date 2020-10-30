@@ -98,12 +98,15 @@ class Dbmanagement:
                               )
         cursor.execute(sql_select_product, {'choice_p': choice_prod})
         fetch = cursor.fetchall()
-        for i in fetch:
-            product = i
-            for y in product:
-                result = str(y).strip("(')")
-                print(result)
-            return product[0]
+        for product in fetch:
+            id_p, name, description, link, nutri, store = product
+            print(f"Voici le produit selectionné:\n\n"
+                  f"Id: {id_p}\n"
+                  f"Nom: {name}\n"
+                  f"Description: {description}\n"
+                  f"Lien: {link}\n"
+                  f"Nutri-score: {nutri}\n"
+                  f"Magasin: {store}\n")
 
     def insert_substitute(self, sub_id, choice_prod):
         """inserting id of product into table substitute"""
@@ -161,7 +164,8 @@ class Dbmanagement:
                   f"Description: {p_description}\n"
                   f"Lien: {p_url}\n"
                   f"Nutri-score: {p_nutri}\n"
-                  f"Magasin: {p_store}\n "
+                  f"Magasin: {p_store}\n"
+                  f"\n"
                   f"peut être substitut par le produit:\n"
                   f"Id: {s_id}\n"
                   f"Nom: {s_name}\n"
