@@ -42,49 +42,51 @@ class Openfoodfact:
         """Answer the use if he want keep product if it's yes
         it's save id of both product in database"""
         substitute = self.choice_sub(choice_prod, choice_cat)
-        keep_sub = str(input("Souhaitez vous le sauvegarder dans "
-                             "la base de donnée ? (oui/non)"))
+        keep_sub = int(input("Souhaitez vous le sauvegarder dans "
+                             "la base de donnée ?\n 1.oui \n2. non)"))
         sub = substitute
-        if keep_sub == 'oui':
+        if keep_sub == 1:
             self.data.insert_substitute(sub, choice_prod)
             print("le produit est bien sauvegarder !")
-        if keep_sub == 'non':
+        if keep_sub == 2:
             self.home()
 
     def show_fav(self):
-        menu_fav = input('Souhaitez vous accéder à vos favoris (oui, non)')
-        if menu_fav == 'oui':
+        menu_fav = int(input('Souhaitez vous accéder à vos favoris\n'
+                             '1. oui\n2. non'))
+        if menu_fav == 1:
             self.data.show_favorite()
             self.del_favorite()
-        if menu_fav == 'non':
+        if menu_fav == 2:
             self.home()
 
     def home_menu(self):
         print('******BIENVENUE******')
         print('********SUR**********')
         print('****OPEN FOOD FACT****')
-        menu_choice = input('Sélectionner le menu souhaité (menu, favoris)')
-        if menu_choice == 'menu':
+        menu_choice = int(input("1. Souhaitez-vous remplacer un produit ? \n"
+                                "2. Accéder à mes favoris. "))
+        if menu_choice == 1:
             self.home()
-        if menu_choice == 'favoris':
+        if menu_choice == 2:
             self.show_fav()
 
     def delete_favorites(self):
         """menu of deleting of all favorites"""
-        del_favorites = input("voullez vous supprimer tout les favoris"
-                              " (oui/non)"
-                              )
-        if del_favorites == "oui":
+        del_favorites = int(input("voullez vous supprimer tout les favoris\n"
+                                  "1. oui\n2. non"
+                                  ))
+        if del_favorites == 1:
             self.data.delete_all_fav()
-        if del_favorites == "non":
+        if del_favorites == 2:
             self.home_menu()
 
     def del_favorite(self):
         """menu of deleting one select favorite"""
-        menu_del_favorite = input("voullez vous supprimer un favoris"
-                                  " (oui, non)"
-                                  )
-        if menu_del_favorite == 'oui':
+        menu_del_favorite = int(input("voullez vous supprimer un favoris\n"
+                                      " 1. oui \n2. non"
+                                      ))
+        if menu_del_favorite == 1:
             fav_prod = int(input("Veuillez indiquer l'id du produit"))
 
             fav_sub = int(input("Veuillez entre l'id du substitut au"
@@ -92,5 +94,5 @@ class Openfoodfact:
 
             self.data.delete_favorite(fav_prod, fav_sub)
 
-        if menu_del_favorite == 'non':
+        if menu_del_favorite == 2:
             self.delete_favorites()

@@ -148,8 +148,8 @@ class Dbmanagement:
         for fav in favorites:
             products = fav[:6]
             substitute = fav[6:]
-            print(f" le produit {products} peut être substituté")
-            print(f"par le produit: {substitute}")
+            print(f" le produit {products} peut être substitut par le produit:"
+                  f"{substitute}")
 
     def delete_all_fav(self):
         """deleting all favorites in table substitute"""
