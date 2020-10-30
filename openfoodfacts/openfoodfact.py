@@ -24,18 +24,23 @@ class Openfoodfact:
 
     def choice_sub(self, choice_prod, choice_cat):
         """ return substitute if choice is correct if not call home() """
-        choice_sub = input("Souhaitez vous un substitut avec ce produits ?"
-                           " (oui, non)")
-        if choice_sub == 'non':
+        choice_sub = int(input("Souhaitez vous un substitut "
+                               "avec ce produits ?\n"
+                               "1. oui\n2. non"))
+        if choice_sub == 2:
             self.home()
-        if choice_sub == 'oui':
+        if choice_sub == 1:
             print("Voici le substitut:")
             substitutes = self.data.return_substitute(choice_prod, choice_cat)
             for sub in substitutes:
                 sub_id = sub[0]
-                result = str(sub).strip('()').replace("'", "")
-                print(result)
-                print(sub_id)
+                id_p, name, description, url, nutriscore, store = sub
+                print(f"Id: {id_p}\n"
+                      f"Nom: {name}\n"
+                      f"Description: {description}\n"
+                      f"Lien: {url}\n"
+                      f"Nutri-score: {nutriscore}\n"
+                      f"Magasin: {store}\n")
                 return sub_id
 
     def keep_substitute(self, choice_prod, choice_cat):
@@ -43,7 +48,7 @@ class Openfoodfact:
         it's save id of both product in database"""
         substitute = self.choice_sub(choice_prod, choice_cat)
         keep_sub = int(input("Souhaitez vous le sauvegarder dans "
-                             "la base de donnée ?\n 1.oui \n2. non)"))
+                             "la base de donnée ?\n 1.oui\n2. non"))
         sub = substitute
         if keep_sub == 1:
             self.data.insert_substitute(sub, choice_prod)
@@ -84,7 +89,7 @@ class Openfoodfact:
     def del_favorite(self):
         """menu of deleting one select favorite"""
         menu_del_favorite = int(input("voullez vous supprimer un favoris\n"
-                                      " 1. oui \n2. non"
+                                      "1. oui\n2. non"
                                       ))
         if menu_del_favorite == 1:
             fav_prod = int(input("Veuillez indiquer l'id du produit"))

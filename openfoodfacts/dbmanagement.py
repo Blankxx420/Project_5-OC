@@ -47,9 +47,9 @@ class Dbmanagement:
         cursor.execute(sql_return_cat)
         fetch = cursor.fetchall()
         for rows in fetch:
-            for word in rows:
-                result = str(word).strip("(')")
-                print(result)
+            id_c, category = rows
+            print(f"{id_c}: {category}")
+
         cursor.close()
 
     def insert_product(self):
@@ -81,8 +81,13 @@ class Dbmanagement:
         fetch = cursor.fetchall()
         for product in fetch:
             self.result.append(product)
-            rows = str(product).strip('()').replace("'", "")
-            print(rows)
+            id_p, name, description, url, nutriscore, store = product
+            print(f"Id: {id_p}\n"
+                  f"Nom: {name}\n"
+                  f"Description: {description}\n"
+                  f"Lien: {url}\n"
+                  f"Nutri-score: {nutriscore}\n"
+                  f"Magasin: {store}\n")
 
     def select_product(self, choice_prod):
         """selecting product by id for selection of 1 product by user"""
@@ -148,8 +153,22 @@ class Dbmanagement:
         for fav in favorites:
             products = fav[:6]
             substitute = fav[6:]
-            print(f" le produit {products} peut être substitut par le produit:"
-                  f"{substitute}")
+            p_id, p_name, p_description, p_url, p_nutri, p_store = products
+            s_id, s_name, s_description, s_url, s_nutri, s_store = substitute
+            print(f"le produit:\n"
+                  f"Id: {p_id}\n"
+                  f"Nom: {p_name}\n"
+                  f"Description: {p_description}\n"
+                  f"Lien: {p_url}\n"
+                  f"Nutri-score: {p_nutri}\n"
+                  f"Magasin: {p_store}\n "
+                  f"peut être substitut par le produit:\n"
+                  f"Id: {s_id}\n"
+                  f"Nom: {s_name}\n"
+                  f"Description: {s_description}\n"
+                  f"Lien: {s_url}\n"
+                  f"Nutri-score: {s_nutri}\n"
+                  f"Magasin: {s_store}\n")
 
     def delete_all_fav(self):
         """deleting all favorites in table substitute"""
