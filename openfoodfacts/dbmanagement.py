@@ -21,6 +21,7 @@ class Dbmanagement:
         self.result = []
 
     def init_database(self):
+        """read the sql script and create the database"""
         with open("openfoodfacts/Database_script.sql") as sqlfile:
             content = sqlfile.read()
         sql_requests = [sql for sql in content.split(';') if sql.strip()]
@@ -185,6 +186,7 @@ class Dbmanagement:
         print('tout les favoris on bien étés effacés')
 
     def delete_favorite(self, fav_prod, fav_sub):
+        """delete one favorite  by getting by user id of product and substitute"""
         cursor = self.cnx.cursor()
         sql_del_fav = (
             "DELETE FROM substitute WHERE product_id = %(choice_fav_p)s "

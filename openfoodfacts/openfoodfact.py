@@ -66,6 +66,7 @@ class Openfoodfact:
             self.home()
 
     def home_menu(self):
+        """menu of launch of application"""
         print('******BIENVENUE******')
         print('********SUR**********')
         print('****OPEN FOOD FACT****')
