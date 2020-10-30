@@ -81,8 +81,9 @@ class Openfoodfact:
 
     def del_favorite(self):
         """menu of deleting one select favorite"""
-        menu_del_favorite = input("voullez vous supprimer un favoris "
-                                  "(oui, non)")
+        menu_del_favorite = input("voullez vous supprimer un favoris"
+                                  " (oui, non)"
+                                  )
         if menu_del_favorite == 'oui':
             fav_prod = int(input("Veuillez indiquer l'id du produit"))
 
