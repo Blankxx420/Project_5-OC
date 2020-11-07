@@ -77,6 +77,7 @@ class Dbmanagement:
         sql_return_prod = ("SELECT id,name,description,link,nutriscore,store "
                            "FROM Product "
                            "WHERE category_id = %(choice)s "
+                           "AND nutriscore >= 'c' "
                            "ORDER BY RAND() LIMIT 10")
         cursor.execute(sql_return_prod, {'choice': choice_cat})
         fetch = cursor.fetchall()
