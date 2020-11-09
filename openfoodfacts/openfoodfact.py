@@ -28,7 +28,8 @@ class Openfoodfact:
         """ return substitute if choice is correct if not call home() """
         choice_sub = int(input("Souhaitez vous un substitut "
                                "avec ce produits ?\n"
-                               "1. oui\n2. non\n"
+                               "1. oui\n"
+                               "2. non\n"
                                ">>>"))
         if choice_sub == 2:
             self.home()
@@ -85,7 +86,8 @@ class Openfoodfact:
     def delete_favorites(self):
         """menu of deleting of all favorites"""
         del_favorites = int(input("voullez vous supprimer tout les favoris\n"
-                                  "1. oui\n2. non\n"
+                                  "1. oui\n"
+                                  "2. non\n"
                                   ">>>"))
         if del_favorites == 1:
             self.data.delete_all_fav()
@@ -95,14 +97,15 @@ class Openfoodfact:
     def del_favorite(self):
         """menu of deleting one select favorite"""
         menu_del_favorite = int(input("voullez vous supprimer un favoris\n"
-                                      "1. oui\n2. non\n"
+                                      "1. oui\n"
+                                      "2. non\n"
                                       ">>>"))
         if menu_del_favorite == 1:
             fav_prod = int(input("Veuillez indiquer l'id du produit\n"
                                  ">>>"))
 
             fav_sub = int(input("Veuillez entre l'id du substitut au"
-                                " produit\n"
+                                "produit\n"
                                 ">>>"))
 
             self.data.delete_favorite(fav_prod, fav_sub)
