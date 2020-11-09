@@ -52,7 +52,10 @@ class Openfoodfact:
         it's save id of both product in database"""
         substitute = self.choice_sub(choice_prod, choice_cat)
         keep_sub = int(input("Souhaitez vous le sauvegarder dans "
-                             "la base de donnée ?\n 1.oui\n2. non"))
+                             "la base de donnée ?\n"
+                             " 1.oui\n"
+                             "2. non\n"
+                             ">>>"))
         sub = substitute
         if keep_sub == 1:
             self.data.insert_substitute(sub, choice_prod)
